@@ -53,8 +53,8 @@ const promptUser = () => {
         type: 'input',
         name: 'tableOfContents',
         message: questions[2],
-        validate: descriptionInput => {
-          if (descriptionInput) {
+        validate: ToCInput => {
+          if (ToCInput) {
             return true;
           } else {
             console.log('No Table of Contents was entered');
@@ -66,8 +66,8 @@ const promptUser = () => {
         type: 'input',
         name: 'steps',
         message: questions[3],
-        validate: descriptionInput => {
-          if (descriptionInput) {
+        validate: stepsInput => {
+          if (stepsInput) {
             return true;
           } else {
             console.log('You didnt enter installation instructions!');
@@ -79,8 +79,8 @@ const promptUser = () => {
         type: 'input',
         name: 'usage',
         message: questions[4],
-        validate: descriptionInput => {
-          if (descriptionInput) {
+        validate: usageInput => {
+          if (usageInput) {
             return true;
           } else {
             console.log('You didnt enter any examples for usage!');
@@ -92,8 +92,8 @@ const promptUser = () => {
         type: 'input',
         name: 'license',
         message: questions[5],
-        validate: descriptionInput => {
-          if (descriptionInput) {
+        validate: licenseInput => {
+          if (licenseInput) {
             return true;
           } else {
             console.log('You didnt enter any license!');
@@ -105,8 +105,8 @@ const promptUser = () => {
         type: 'input',
         name: 'credits',
         message: questions[6],
-        validate: descriptionInput => {
-          if (descriptionInput) {
+        validate: creditsInput => {
+          if (creditsInput) {
             return true;
           } else {
             console.log('You didnt enter any credits. It will be left blank');
@@ -118,8 +118,8 @@ const promptUser = () => {
         type: 'input',
         name: 'tests',
         message: questions[7],
-        validate: descriptionInput => {
-          if (descriptionInput) {
+        validate: testsInput => {
+          if (testsInput) {
             return true;
           } else {
             console.log('You didnt enter any tests');
@@ -131,8 +131,8 @@ const promptUser = () => {
         type: 'input',
         name: 'username',
         message: questions[8],
-        validate: descriptionInput => {
-          if (descriptionInput) {
+        validate: usernameInput => {
+          if (usernameInput) {
             return true;
           } else {
             console.log('You didnt enter a github username');
@@ -144,8 +144,8 @@ const promptUser = () => {
         type: 'input',
         name: 'email',
         message: questions[9],
-        validate: descriptionInput => {
-          if (descriptionInput) {
+        validate: emailInput => {
+          if (emailInput) {
             return true;
           } else {
             console.log('You didnt enter an email');
@@ -173,36 +173,36 @@ const promptUser = () => {
 
 // TODO: Create a function to write README file
 function writeToFile(data) {
-    return `
-    # Title
-    ${data.title}
+return `
+# Title
+${data.title}
 
-    ## Description
-    ${data.description}
+## Description
+${data.description}
 
-    ## Table of Contents
-    ${data.tableOfContents}
+## Table of Contents
+${data.tableOfContents}
 
-    ## Installation
-    ${data.steps}
+## Installation
+${data.steps}
 
-    ## Usage
-    ${data.usage}
+## Usage
+${data.usage}
 
-    ## License
-    ${data.license}
+## License
+${data.license}
 
-    ## Credits
-    ${data.credits}
+## Credits
+${data.credits}
 
-    ## Tests
-    ${data.tests}
+## Tests
+${data.tests}
 
-    ## Github Username
-    ${data.username}
+## Github Username
+${data.username}
 
-    ## Email
-    ${data.email}
+## Email
+${data.email}
     `;
 };
 

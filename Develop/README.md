@@ -1,31 +1,31 @@
 
-    # Title
-    Readme generator
+# Title
+readme generator
 
-    ## Description
-    a proffesional readme generator
+## Description
+a professional readme generator
 
-    ## Table of Contents
-    
+## Table of Contents
 
-    ## Installation
-    just clone and run
 
-    ## Usage
-    enter responses to the prompts
+## Installation
+just clone and run with node
 
-    ## License
-    8193674
+## Usage
+just enter a response to each of the question prompts
 
-    ## Credits
-    Elijah Johnson
+## License
+2738493
 
-    ## Tests
-    just run it 
+## Credits
+Elijah Johnson
 
-    ## Github Username
-    elijohnson565@gmail.com
+## Tests
+no tests
 
-    ## Email
-    elijohnson565@gmail.com
+## Github Username
+elijohnson565
+
+## Email
+elijohnson565@gmail.com
     
