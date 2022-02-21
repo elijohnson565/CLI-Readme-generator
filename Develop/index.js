@@ -1,7 +1,7 @@
 // TODO: Include packages needed for this application
 const fs = require("fs");
 const inquirer = require("inquirer");
-const generatePage = require('./readme-template');
+
 // TODO: Create an array of questions for user input
 const questions = [
     "What is your projects title? (Required):", 
