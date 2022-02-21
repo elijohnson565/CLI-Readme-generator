@@ -1,21 +1,21 @@
 
 # Title
-readme generator
+README Generator
 
 ## Description
-a professional readme generator
+a readme generator
 
 ## Table of Contents
 
 
 ## Installation
-just clone and run with node
+Just clone and run with node
 
 ## Usage
-just enter a response to each of the question prompts
+run the index.js file with node
 
 ## License
-2738493
+none
 
 ## Credits
 Elijah Johnson
