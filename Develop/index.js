@@ -1,38 +1,215 @@
 // TODO: Include packages needed for this application
 const fs = require("fs");
 const inquirer = require("inquirer");
-
+const generatePage = require('./readme-template');
 // TODO: Create an array of questions for user input
 const questions = [
-    "What is your projects title?: ", 
-    "Enter a description of your project.: ", 
-    "Enter a table of contents (Optional).: ", 
-    "What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.: ", 
-    "Provide instructions and examples for use.: ",
-    "Enter a project license for your project.: ",
-    "If you created an application or package and would like other developers to contribute it, you can include guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you'd prefer.: ",
-    "Go the extra mile and write tests for your application. Then provide examples on how to run them here.: ",
-    "Enter your github username, in case people want to reach out with any questions.: ",
-    "Enter an email, in case people want to reach out with any questions.: "
+    "What is your projects title? (Required):", 
+    "Enter a description of your project. (Required):", 
+    "Enter a table of contents (Optional).:", 
+    "What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.:", 
+    "Provide instructions and examples for use.:",
+    "Enter a project license for your project.:",
+    "Please list project contributors, if any (optional)",
+    "Go the extra mile and write tests for your application. Then provide examples on how to run them here.:",
+    "Enter your github username, in case people want to reach out with any questions.:",
+    "Enter an email, in case people want to reach out with any questions.:"
 ];
 
 const promptUser = () => {
+  console.log(`
+  =================
+  Create a New README File!
+  =================
+  `);
     return inquirer.prompt([
       {
         type: 'input',
-        name: 'about',
+        name: 'title',
         message: questions[0],
-        when: ({ confirmAbout }) => confirmAbout
-      }
-    ]);
+        validate: nameInput => {
+          if (nameInput) {
+            return true;
+          } else {
+            console.log('You need to enter a project title!');
+            return false;
+          }
+        }
+      },
+      {
+        type: 'input',
+        name: 'description',
+        message: questions[1],
+        validate: descriptionInput => {
+          if (descriptionInput) {
+            return true;
+          } else {
+            console.log('You need to enter a project description!');
+            return false;
+          }
+        }
+      },
+      {
+        type: 'input',
+        name: 'tableOfContents',
+        message: questions[2],
+        validate: descriptionInput => {
+          if (descriptionInput) {
+            return true;
+          } else {
+            console.log('No Table of Contents was entered');
+            return true;
+          }
+        }
+      },
+      {
+        type: 'input',
+        name: 'steps',
+        message: questions[3],
+        validate: descriptionInput => {
+          if (descriptionInput) {
+            return true;
+          } else {
+            console.log('You didnt enter installation instructions!');
+            return false;
+          }
+        }
+      },
+      {
+        type: 'input',
+        name: 'usage',
+        message: questions[4],
+        validate: descriptionInput => {
+          if (descriptionInput) {
+            return true;
+          } else {
+            console.log('You didnt enter any examples for usage!');
+            return false;
+          }
+        }
+      },
+      {
+        type: 'input',
+        name: 'license',
+        message: questions[5],
+        validate: descriptionInput => {
+          if (descriptionInput) {
+            return true;
+          } else {
+            console.log('You didnt enter any license!');
+            return false;
+          }
+        }
+      },
+      {
+        type: 'input',
+        name: 'credits',
+        message: questions[6],
+        validate: descriptionInput => {
+          if (descriptionInput) {
+            return true;
+          } else {
+            console.log('You didnt enter any credits. It will be left blank');
+            return true;
+          }
+        }
+      },
+      {
+        type: 'input',
+        name: 'tests',
+        message: questions[7],
+        validate: descriptionInput => {
+          if (descriptionInput) {
+            return true;
+          } else {
+            console.log('You didnt enter any tests');
+            return true;
+          }
+        }
+      },
+      {
+        type: 'input',
+        name: 'username',
+        message: questions[8],
+        validate: descriptionInput => {
+          if (descriptionInput) {
+            return true;
+          } else {
+            console.log('You didnt enter a github username');
+            return false;
+          }
+        }
+      },
+      {
+        type: 'input',
+        name: 'email',
+        message: questions[9],
+        validate: descriptionInput => {
+          if (descriptionInput) {
+            return true;
+          } else {
+            console.log('You didnt enter an email');
+            return false;
+          }
+        }
+      },
+      
+    
+    ])
+    
+    .then(projectData => {
+      const readmeTemplate = writeToFile(projectData)
+      fs.writeFile("./README.md", readmeTemplate, err => {
+        if(err)
+          throw new Error(err)
+          else{
+            console.log("README file has been created!")
+          }
+      })
+    });
   };
 
+  
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(data) {
+    return `
+    # Title
+    ${data.title}
+
+    ## Description
+    ${data.description}
+
+    ## Table of Contents
+    ${data.tableOfContents}
+
+    ## Installation
+    ${data.steps}
+
+    ## Usage
+    ${data.usage}
+
+    ## License
+    ${data.license}
+
+    ## Credits
+    ${data.credits}
+
+    ## Tests
+    ${data.tests}
+
+    ## Github Username
+    ${data.username}
+
+    ## Email
+    ${data.email}
+    `;
+};
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+  promptUser()
+}
 
 // Function call to initialize app
 init();
